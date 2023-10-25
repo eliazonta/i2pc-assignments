@@ -13,6 +13,8 @@
 
 # 1. Implicit parallelism techniques and performance models <a name="H1"></a>
 
+![Build](https://github.com/eliazonta/i2pc-assignments/actions/workflows/c.yml/badge.svg)
+
 ## 1.1 Array addition and vectorization<a name="H11"></a>
 [[LINK]](/H1/es1/README.md)
 
