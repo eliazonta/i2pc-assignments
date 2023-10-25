@@ -1,0 +1,26 @@
+#!/bin/bash
+# Job name
+#PBS -N es2
+# Output files
+#PBS -o ./es2.o
+#PBS -e ./es2.e
+# Queue
+#PBS -q short_cpuQ
+# Set the maximum wall time
+#PBS -l walltime=0:010:00
+# Number of nodes, cpus, mpi processors and amount of memory
+#PBS -l select=1:ncpus=1:ompthreads=4:mem=1mb
+# Mail info
+#PBS -m abe
+#PBS -M elia.zonta@unitn.it
+
+# Select wd
+cd /home/elia.zonta/assignments/H1/es2
+
+# Load the necessary modules and uncomment the next line
+#module load modulename
+
+# The code should be compiled before submitting the job
+make
+
+./es2.out

@@ -1,0 +1,22 @@
+Compiling...
+gcc -std=c99 -O3 -fopenmp -o es1.out main.c
+Using input dim: 16
+16     0.001736
+Using input dim: 64
+64    0.0008903
+Using input dim: 256
+256    0.0009574
+Using input dim: 1024
+1024     0.001241
+Using input dim: 4096
+4096     0.002455
+Using input dim: 16384
+16384     0.007413
+Using input dim: 65536
+65536      0.02267
+Using input dim: 262144
+262144       0.1494
+Using input dim: 1048576
+1048576       0.9831
+Using input dim: 4194304
+4194304        5.095
