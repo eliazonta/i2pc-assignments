@@ -27,3 +27,24 @@ jobs:
         echo OMP_DYNAMIC:$OMP_DYNAMIC
         echo OMP_NESTED:$OMP_NESTED
         make 
+        
+  build_H1-es2:
+  
+      runs-on: ubuntu-latest
+  
+      steps:
+      - uses: actions/checkout@v3
+      - name: clean
+        working-directory: ./H1/es2
+        run: make clean
+      - name: make (run)
+        working-directory: ./H1/es2
+        env: 
+            OMP_NUM_THREADS: 1
+        run: |
+          sudo apt-get update; sudo apt-get install -y libomp5 libomp-dev
+          echo OMP_NUM_THREADS:$OMP_NUM_THREADS
+          echo OMP_SCHEDULE:$OMP_SCHEDULE
+          echo OMP_DYNAMIC:$OMP_DYNAMIC
+          echo OMP_NESTED:$OMP_NESTED
+          make 
