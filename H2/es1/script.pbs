@@ -1,0 +1,32 @@
+#!/bin/bash
+# Job name
+#PBS -N es1
+# Output files
+#PBS -o ./es1.o
+#PBS -e ./es1.e
+# Queue name
+#PBS -q short_cpuQ
+# Set the maximum wall time
+#PBS -l walltime=0:010:00
+# Number of nodes, cpus, mpi processors and amount of memory
+#PBS -l select=1:ncpus=1:ompthreads=4:mem=1mb
+# Mail information
+#PBS -m abe
+#PBS -M elia.zonta@unitn.it
+
+# Select the working directory
+cd /home/elia.zonta/assignments/H2/es1
+
+# Load the necessary modules and uncomment the next line
+#module load modulename
+
+# The code should be compiled before submitting the job
+make
+
+# Run hello using 4 threads
+export OMP_NUM_THREADS=2; ./es1.out 
+export OMP_NUM_THREADS=4; ./es1.out 
+export OMP_NUM_THREADS=8; ./es1.out 
+export OMP_NUM_THREADS=16; ./es1.out 
+export OMP_NUM_THREADS=32; ./es1.out 
+export OMP_NUM_THREADS=64; ./es1.out 
