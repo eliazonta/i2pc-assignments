@@ -10,7 +10,7 @@
 
     1. [Parallel matrix multiplication](#H21)
     2. [Parallel matrix transposition](#H22)
-3. [H3 - [TBD]]()
+3. [Parallelizing matrix operations using MPI](#H3)
 
 
 
@@ -154,3 +154,7 @@ gprof <target>.out gmon.out > analysis.txt
 ```bash
 less analysis.txt
 ```
+
+## 2.2 Parallel matrix transposition<a name="H3"></a>
+
+[[LINK]](H2/es2/README.md)

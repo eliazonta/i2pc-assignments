@@ -1,0 +1,31 @@
+#!/bin/bash
+# Job name
+#PBS -N es2
+# Output files
+#PBS -o ./es1.o
+#PBS -e ./es1.e
+# Queue name
+#PBS -q short_cpuQ
+# Set the maximum wall time
+#PBS -l walltime=0:010:00
+# Number of nodes, cpus, mpi processors and amount of memory
+#PBS -l select=1:ncpus=1:ompthreads=4:mem=1mb
+# Mail information
+#PBS -m abe
+#PBS -M elia.zonta@unitn.it
+
+# Select the working directory
+cd /home/elia.zonta/assignments/H3/
+
+# Load the necessary modules and uncomment the next line
+#module load modulename
+
+# The code should be compiled before submitting the job
+make clean
+make sequential
+./sequential 
+
+make parallel
+./parallel 
+
+
