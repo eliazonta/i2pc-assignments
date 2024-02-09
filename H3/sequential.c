@@ -3,7 +3,7 @@
 #include <time.h>
 #include <sys/time.h>
 #include <string.h>
-#include <omp.h>
+
 
 #define dtype double
 #define SIZE 300
@@ -24,9 +24,18 @@ struct matrix{
 };
 double wt1, wt2;
 
+void matT(struct matrix* A, struct matrix* A_T){
+    for (int i = 0; i < A->num_rows; ++i) {
+        for (int j = 0; j < A->num_cols; ++j) {
+            A_T->values[j * A_T->num_cols + i] = A->values[i * A->num_cols + j];
+        }
+    }
+
+}
+
 int main()
 {
-    double start_time, end_time;
+    clock_t start_time, end_time;
     struct matrix A = {SIZE, SIZE};
     struct matrix A_T = {SIZE, SIZE}; // init
 
@@ -40,15 +49,14 @@ int main()
         A_T.values[i] = 0.0;
 
 
-    start_time = omp_get_wtime();
+    start_time = clock();
     matT(&A, &A_T);
-    end_time = omp_get_wtime();
+    end_time = clock();
 
-    double elapsed_time = end_time - start_time; // Elapsed time in seconds
+    double elapsed_time = (double)(end_time - start_time) / CLOCKS_PER_SEC; // Elapsed time in seconds
     double data_size = (SIZE * SIZE * sizeof(dtype) * 2) / (1024.0 * 1024.0);
     double bandwidth = data_size / elapsed_time; // 
-    printf("%f s\t%f GB/s\n", elapsed_time, bandwidth);
-    printf("%f\n", bandwidth);
+    printf("%f s\t%f Gb/s\n", elapsed_time, bandwidth);
 
     // PRINT_MATRIX(A);
     // PRINT_MATRIX(A_T);

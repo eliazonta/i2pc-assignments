@@ -1,10 +1,14 @@
 CC := gcc
+CXX := g++
+MPICC := mpicxx
+
 CFLAGS := -std=c99 -O3
+CXXFLAGS := -std=c++11 -O3
 OMPFLAGS := -fopenmp
 MAIN := main.c
 TARGET := es2.out
 
-all: $(TARGET)
+all: sequential parallel
 
 sequential: sequential.c
 	@echo "Compiling..."
@@ -12,13 +16,10 @@ sequential: sequential.c
 
 parallel: parallel.cpp
 	@echo "Compiling..."
-	$(CC) $(CFLAGS) $(OMPFLAGS) -o parallel parallel.cpp
+	$(MPICC) $(CXXFLAGS) -o parallel parallel.cpp
 
-
-# WIP
-$(TARGET) : $(MAIN)
+blocks: parallel-blocks.cpp
 	@echo "Compiling..."
-	$(CC) $(CFLAGS) $(OMPFLAGS) -o $(TARGET) $(MAIN)
-
+	$(MPICC) $(CXXFLAGS) -o parallel-blocks parallel-blocks.cpp
 clean:
-	rm -f *.o *.a *.so *.out *.gch *.o *.e
+	rm -f *.o *.a *.so *.out *.gch *.o *.e sequential parallel parallel-blocks

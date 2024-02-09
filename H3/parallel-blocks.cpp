@@ -1,5 +1,9 @@
 #include <iostream>
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 #include <mpi.h>
+#include <sys/time.h>
 #include <chrono>
 
 #define DEBUG false
@@ -41,7 +45,7 @@ int main(int argc, char *argv[])
     MPI_Comm_size(MPI_COMM_WORLD, &size);
 
     const int n = 1000;  // square matrix 
-    const int block_size = n / size;
+    int block_size = n / size;
 
     double *matrix = nullptr;
     double *transposed_matrix = nullptr;
@@ -60,6 +64,7 @@ int main(int argc, char *argv[])
     }
 
     // Scatter the matrix to all processes
+    // cast blocksize to void* to avoid warning outside the MPI call 
     MPI_Bcast(&block_size, 1, MPI_INT, 0, MPI_COMM_WORLD);
     MPI_Bcast(matrix, n * n, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
@@ -107,3 +112,4 @@ int main(int argc, char *argv[])
 
     return 0;
 }
+

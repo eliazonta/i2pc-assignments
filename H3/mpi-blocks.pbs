@@ -2,23 +2,23 @@
 # Job name
 #PBS -N parallel_H3
 # Output files
-#PBS -o ./es1.o
-#PBS -e ./es1.e
+#PBS -o es1.o
+#PBS -e es1.e
 # Queue name
 #PBS -q short_cpuQ
 # Set the maximum wall time
 #PBS -l walltime=00:20:00
 
 # Number of nodes, cpus, mpi processors and amount of memory
-#PBS -l select=1:ncpus=1:mem=1mb
+#PBS -l select=4:ncpus=64:mpiprocs=64:mem=1mb
 
 # Mail information
 #PBS -m abe
 #PBS -M elia.zonta@unitn.it
 
-
 # Modules for C and MPI
 module load gcc91
+module load mpich-3.2.1--gcc-9.1.0
 
 g++() {
     g++-9.1.0 "$@"
@@ -30,20 +30,26 @@ gcc() {
 }
 gcc --version
 
+mpicxx --version
+
 # To check the architecture
 lscpu
 printf "\n"
 
 
+
 # Select the working directory
 cd /home/elia.zonta/assignments/H3/
 
-# Load the necessary modules and uncomment the next line
-#module load modulename
 
-# The code should be compiled before submitting the job
-./sequential 
+# Run the code
+for ((i = 1 ; i <= 64 ; i*=2))
+do
+    printf "# N MPI PROCS: $i #\n"
+	mpiexec -np $i ./parallel-blocks
+    printf "\n"
+done
 
-
+printf "Exiting...\n"
 
 

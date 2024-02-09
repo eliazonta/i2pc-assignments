@@ -4,13 +4,13 @@
 #include <unistd.h>
 #include <mpi.h>
 #include <sys/time.h>
+#include <chrono>
 
 #define MASTER  0
 #define TAG     0
 #define MSGSIZE 1000
 #define MAX 25
 
-using namespace std;
 
 int main(int argc, char* argv[])
 {
@@ -74,9 +74,10 @@ int main(int argc, char* argv[])
 	}
     else 
 	{
+		/*
         printf ("N nodes: %d\n", num_nodes);
         printf ("Master (process %d)\n", my_rank);
-		cout << "Initial array:" << endl;
+		std::cout << "Initial array:" << std::endl;
 		for(int i = 0, x = 0; i < workers; i++)
 		{
 			for(int j = 0; j < workers; j++, x++)
@@ -88,6 +89,8 @@ int main(int argc, char* argv[])
 			cout << endl;
 		}
 		cout << endl;
+
+		*/
 		
 		// Get results
         for (source = 1; source < num_nodes; source++) 
@@ -96,7 +99,7 @@ int main(int argc, char* argv[])
 			for(int i = 0; i < workers; i++)
 				matrix[source-1][i] = buffer[i];
         }
-		
+		/*
 		cout << "Transposed :" << endl;
 		for(int i = 0, x = 0; i < workers; i++)
 		{
@@ -108,6 +111,7 @@ int main(int argc, char* argv[])
 			}
 			cout << endl;
 		}
+		*/
 	}
 
     MPI_Finalize();

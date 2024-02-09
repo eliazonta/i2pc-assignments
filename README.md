@@ -155,6 +155,6 @@ gprof <target>.out gmon.out > analysis.txt
 less analysis.txt
 ```
 
-## 2.2 Parallel matrix transposition<a name="H3"></a>
+# 3 Parallel matrix transposition<a name="H3"></a>
 
-[[LINK]](H2/es2/README.md)
+[[LINK]](H3/README.md)
