@@ -1,4 +1,4 @@
-## 2.2 Parallel matrix transposition
+## 3 Parallel matrix transposition
 Run the following:
 <!-- ```bash
     cd H1/es2
