@@ -8,7 +8,7 @@ OMPFLAGS := -fopenmp
 MAIN := main.c
 TARGET := es2.out
 
-all: sequential parallel
+all: sequential parallel blocks
 
 sequential: sequential.c
 	@echo "Compiling..."
