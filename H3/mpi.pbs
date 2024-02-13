@@ -39,7 +39,7 @@ printf "\n"
 
 
 # Select the working directory
-cd /home/elia.zonta/assignments/H3/
+cd /home/elia.zonta/i2pc-assignments/H3/
 
 
 # Run the code
