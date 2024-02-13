@@ -3,7 +3,10 @@ Run the following:
 <!-- ```bash
     cd H1/es2
 ``` -->
-
+cd in the right directory:
+```bash
+    cd i2pc-assignments/H3/
+```
 Load required modules with :
 ```bash
     module load gcc91
