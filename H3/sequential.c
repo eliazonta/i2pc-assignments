@@ -6,7 +6,7 @@
 
 
 #define dtype double
-#define SIZE 300
+#define SIZE 3000
 
 #define PRINT_MATRIX(M) { \
    printf("Matrix %s:\n", #M); \
